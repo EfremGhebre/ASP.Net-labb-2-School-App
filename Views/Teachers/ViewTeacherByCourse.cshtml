@@ -1,0 +1,43 @@
+﻿@model IEnumerable<ASP.Net_labb_2_School_App.Models.Teacher>
+
+@{
+    ViewData["Title"] = "Teachers by Course";
+}
+
+
+<h3>Teachers for: @ViewBag.SelectedCourse?.Name</h3>
+
+<hr />
+@if (!Model.Any())
+{
+    <p>No teachers found for the selected course.</p>
+}
+else
+{
+    <table class="table">  
+        <thead>
+            <tr>
+                <th>Teacher's Name</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var teacher in Model)
+            {
+                <tr>
+                    <td>@teacher.Name</td>
+                </tr>
+            }
+        <tbody/>
+    </table>
+    <div>
+
+    </div>
+}
+
+<div class="mt-4">
+    <a asp-controller="Teachers" asp-action="FindTeacherByCourse">Choose another course</a>
+</div>
+<div class="mt-4">
+    <a asp-controller="Home" asp-action="OperationsMenu"><-- Back to previous page</a>
+</div>
+

@@ -1,0 +1,33 @@
+﻿@model IEnumerable<ASP.Net_labb_2_School_App.Models.Teacher>
+
+@{
+    ViewData["Title"] = "Filter Teachers by Course";
+}
+
+<h4>Choose a course to view teachers.</h4>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="FindTeacherByCourse" method="get">
+            <div class="form-group">
+                <select id="CourseId" name="courseId" class="form-control">
+                    <option value="">-- Select Course --</option>
+                    @foreach (var course in (SelectList)ViewBag.CourseId)
+                    {
+                        <option value="@course.Value">@course.Text</option>
+                    }
+                </select>
+            </div>
+            <br />
+            <div class="form-group">
+                <input type="submit" value="Search" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+<div class="mt-4">
+    <a asp-controller="Home" asp-action="OperationsMenu"><-- Back to previous page</a>
+</div>
+
+

@@ -1,0 +1,25 @@
+﻿
+@{
+    ViewData["Title"] = "School information";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Choose from below list to see detailed school information:</h2>
+<hr />
+<div class="form-group">
+
+    <select id="actionSelector" class="form-control" onchange="location = this.value;">
+        <option value="">Select an option</option>
+        <option value="@Url.Action("Index", "Teachers")">Teachers</option>
+        <option value="@Url.Action("Index", "Students")">Students</option>
+        <option value="@Url.Action("Index", "Classes")">Classes</option>
+        <option value="@Url.Action("Index", "Courses")">Courses</option>
+    </select>
+</div>
+<br />
+<div>
+    <a asp-controller="Home" asp-action="Index"><-- Back to home page</a>
+</div>
+
+
+

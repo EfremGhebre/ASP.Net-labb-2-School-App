@@ -1,0 +1,55 @@
+﻿@model IEnumerable<ASP.Net_labb_2_School_App.Models.Student>
+
+@{
+    ViewData["Title"] = "All Students with Their Teachers";
+}
+
+<h4>All Students with Their Teachers</h4>
+
+<hr />
+
+@if (!Model.Any())
+{
+    <p>No students found.</p>
+}
+else
+{
+    <table class="table ">
+        <thead>
+            <tr>
+                <th>Student Name</th>               
+                <th>Course</th>
+                <th>Teachers</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var student in Model)
+            {
+                bool firstCourse = true; // Track if it's the first course for the student
+                int courseCount = student.CoursesStudents.Count(); // Count the number of courses the student has
+
+                foreach (var courseStudent in student.CoursesStudents)
+                {
+                    var course = courseStudent.Course;
+                    <tr>
+                        @if (firstCourse)
+                        {
+                            <td rowspan="@courseCount">@student.Name</td>                            
+                            firstCourse = false; // Set to false after the first course
+                        }
+                        <td>@course.Name</td>
+                        <td>
+                            @foreach (var courseTeacher in course.CoursesTeachers)
+                            {
+                                <div>@courseTeacher.Teacher.Name</div>
+                            }
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+}
+<div class="pb-4">
+    <a asp-controller="Home" asp-action="OperationsMenu"><-- Back to previous page</a>
+</div>

@@ -1,0 +1,88 @@
+﻿@model ASP.Net_labb_2_School_App.Models.CourseStudentsTeachersViewModel
+
+@using System.Linq
+
+
+@{
+    ViewBag.Title = "Students and Teachers by Course";
+}
+
+<h4>Students and Teachers by Course</h4>
+
+ <hr/>
+<div class="row">
+    <div class="col-md-4">
+        <form method="get" asp-action="FilterStudentTeacherByCourse">
+            <div class="form-group">                
+                <select id="CourseId" name="courseId" class="form-control">
+                    <option value="">-- Select Course --</option>
+                    @foreach (var course in (SelectList)ViewBag.CourseId)
+                    {
+                        <option value="@course.Value">@course.Text</option>
+                    }
+                </select>
+            </div>
+            <br/>
+            <button type="submit" class="btn btn-primary">Search Students and Teachers</button>
+        </form>
+  </div>
+</div>
+
+
+@if (Model != null && Model.Course != null)
+{
+    <h3>Course: @Model.Course.Name</h3>
+
+    <h4>Students</h4>
+    @if (Model.Students.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model.Students)
+                {
+                    <tr>
+                        <td>@student.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No students found for this course.</p>
+    }
+
+    <h4>Teachers</h4>
+    @if (Model.Teachers.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var teacher in Model.Teachers)
+                {
+                    <tr>
+                        <td>@teacher.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No teachers found for this course.</p>
+    }
+}
+<br/>
+<div class="pb-4">
+    <a asp-controller="Home" asp-action="OperationsMenu"><-- Back to previous page</a>
+</div>
+

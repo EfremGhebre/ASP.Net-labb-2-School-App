@@ -1,0 +1,66 @@
+﻿
+@using System.Linq
+
+
+@{
+    ViewData["Title"] = "Teachers and Students by Course";
+}
+
+<h3>Teachers and Students for: @ViewBag.SelectedCourse?.Name</h3>
+
+
+@if (Model != null && Model.Course != null)
+{
+    <h3>Course: @Model.Course.Name</h3>
+
+    <h4>Students</h4>
+    @if (Model.Students.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var student in Model.Students)
+                {
+                    <tr>
+                        <td>@student.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No students found for this course.</p>
+    }
+
+    <h4>Teachers</h4>
+    @if (Model.Teachers.Any())
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var teacher in Model.Teachers)
+                {
+                    <tr>
+                        <td>@teacher.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+    else
+    {
+        <p>No teachers found for this course.</p>
+    }
+}
+<div class="pb-4">
+    <a asp-controller="Home" asp-action="OperationsMenu"><-- Back to previous page</a>
+</div>

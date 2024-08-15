@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Operations menu";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Choose from below list to implement different tasks:</h2>
+<hr />
+<div class="form-group">
+
+    <select id="actionSelector" class="form-control" onchange="location = this.value;">
+        <option value="">-- Select an option --</option>
+        <option value="@Url.Action("FilterStudentTeacherByCourse", "Courses")">Search Student Teacher By Course</option>
+        <option value="@Url.Action("FindTeacherByCourse", "Teachers")">Search Teacher By Course</option>
+        <option value="@Url.Action("FindAllStudentsWithAllTeachers", "Students")">View All Students With All Teachers</option>
+        <option value="@Url.Action("EditTeacher", "Students")">Edit Student´s Teacher</option>
+    </select>
+</div>
+<br />
+<div>
+    <a asp-controller="Home" asp-action="Index"><-- Back to home page</a>
+</div>
+
+
+

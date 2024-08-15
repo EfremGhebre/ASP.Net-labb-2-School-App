@@ -1,0 +1,43 @@
+﻿@model ASP.Net_labb_2_School_App.Models.EditTeacherViewModel
+
+@{
+    ViewData["Title"] = "Edit Teacher";
+}
+
+<h2>Select Student and Course to Edit Teacher</h2>
+<br/>
+<form asp-action="EditTeacher" method="post">
+    <div class="form-group">
+        <label for="studentSelect">Select Student</label>
+        <select id="studentSelect" name="SelectedStudentId" asp-for="SelectedStudentId" class="form-control" asp-items="@(new SelectList(Model.Students, "Id", "Name"))" onchange="this.form.submit();">
+            <option value="">-- Select Student --</option>
+        </select>
+    </div>
+    <br />
+    @if (Model.Courses != null && Model.Courses.Count > 0)
+    {
+        <div class="form-group">
+            <label for="courseSelect">Select Course</label>
+            <select id="courseSelect" name="SelectedCourseId" asp-for="SelectedCourseId" class="form-control" asp-items="@(new SelectList(Model.Courses, "Id", "Name"))" onchange="this.form.submit();">
+                <option value="">-- Select Course --</option>
+            </select>
+        </div>
+    }
+    <br />
+    @if (Model.Teachers != null && Model.Teachers.Count > 0)
+    {
+        <div class="form-group">
+            <label for="teacherSelect">Select Teacher</label>
+            <select id="teacherSelect" name="SelectedTeacherId" asp-for="SelectedTeacherId" class="form-control" asp-items="@(new SelectList(Model.Teachers, "Id", "Name"))">
+                <option value="">-- Select Teacher --</option>
+            </select>
+        </div>
+    }          
+<br/>
+
+    <div class="form-group">
+        <input type="submit" value="Save" class="btn btn-primary" />
+        <a asp-action="OperationsMenu" class="btn btn-secondary">Cancel</a>
+    </div>
+    
+</form>
